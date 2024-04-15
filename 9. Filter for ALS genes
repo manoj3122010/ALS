@@ -1,0 +1,39 @@
+# `als_genes` is a tibble containing ALS-related genes obtained from the OpenTargets platform.
+# It includes attributes such as the gene symbol and overall association score with ALS.
+# Additionally, it provides information on genetic associations, somatic mutations, drugs targeting the genes,
+# pathways/systems biology relevance, text mining evidence, RNA expression, and more.
+
+# Combine upregulated genes from Exc_neuron, Inh_neuron, and Non_neuron into a single list
+up <- c(exc_up_genes, inh_up_genes, non_up_genes)
+
+# Create a data frame with the upregulated genes
+up <- data.frame(symbol = up)
+
+# Filter ALS genes that are upregulated
+als_up <- als_genes %>%
+     semi_join(up, by = "symbol")
+
+# Combine downregulated genes from Exc_neuron, Inh_neuron, and Non_neuron into a single list
+down <- c(exc_down_genes, inh_down_genes, non_down_genes)
+
+# Create a data frame with the downregulated genes
+down <- data.frame(symbol = down)
+
+# Filter ALS genes that are downregulated
+als_down <- als_genes %>%
+     semi_join(down, by = "symbol")
+
+# Find common genes between upregulated and downregulated ALS genes
+als_common <- intersect(als_up$symbol, als_down$symbol)
+
+# Create a data frame with the common genes
+common <- data.frame(symbol = als_common)
+
+# Filter ALS genes that are common between upregulated and downregulated
+als_common <- als_genes %>%
+     semi_join(common, by = "symbol")
+
+# Write the filtered ALS genes to Excel files
+write.xlsx(als_up, file = "als_up.xlsx", row.names = FALSE)
+write.xlsx(als_down, file = "als_down.xlsx", row.names = FALSE)
+write.xlsx(als_common, file = "als_common.xlsx", row.names = FALSE)
