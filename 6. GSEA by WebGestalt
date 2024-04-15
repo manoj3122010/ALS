@@ -1,0 +1,24 @@
+# Create rank files for GSEA analysis in WebGestalt
+
+# Subset a1_exc_mast to include only "gene" and "avg_log2FC" columns
+a1_exc_mast <- a1_exc_mast[, c("gene", "avg_log2FC")]
+# Remove the "gene" column from a1_exc_mast
+a1_exc_mast$gene <- NULL
+# Write a1_exc_mast data to a tab-separated file named "a1_exc_mast.rnk"
+write.table(a1_exc_mast, file = "a1/webgestalt/filtered/a1_exc_mast.rnk", sep = "\t", quote = FALSE)
+
+# Subset a1_inh_mast to include only "gene" and "avg_log2FC" columns
+a1_inh_mast <- a1_inh_mast[, c("gene", "avg_log2FC")]
+# Remove the "gene" column from a1_inh_mast
+a1_inh_mast$gene <- NULL
+# Write a1_inh_mast data to a tab-separated file named "a1_inh_mast.rnk"
+write.table(a1_inh_mast, file = "a1/webgestalt/filtered/a1_inh_mast.rnk", sep = "\t", quote = FALSE)
+
+# Subset a1_non_mast to include only "gene" and "avg_log2FC" columns
+a1_non_mast <- a1_non_mast[, c("gene", "avg_log2FC")]
+# Remove the "gene" column from a1_non_mast
+a1_non_mast$gene <- NULL
+# Write a1_non_mast data to a tab-separated file named "a1_non_mast.rnk"
+write.table(a1_non_mast, file = "a1/webgestalt/filtered/a1_non_mast.rnk", sep = "\t", quote = FALSE)
+
+# Add comment to repeat the process for samples a2-a6
