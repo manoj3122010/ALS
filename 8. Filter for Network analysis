@@ -1,0 +1,40 @@
+# Select upregulated genes in at least 3 samples or cell types for Exc_neuron
+exc_up_genes <- c(a1_exc_up$gene, a2_exc_up$gene, a3_exc_up$gene, a4_exc_up$gene, 
+  a5_exc_up$gene, a6_exc_up$gene)
+gene_counts <- table(exc_up_genes)
+exc_up <- names(gene_counts[gene_counts >= 3])
+
+# Select downregulated genes in at least 3 samples or cell types for Exc_neuron
+exc_down_genes <- c(a1_exc_down$gene, a2_exc_down$gene, a3_exc_down$gene, 
+  a4_exc_down$gene, a5_exc_down$gene, a6_exc_down$gene)
+gene_counts <- table(exc_down_genes)
+exc_down <- names(gene_counts[gene_counts >= 3])
+
+# Repeat the above process for Inh_neuron and Non_neuron
+inh_up_genes <- c(a1_inh_up$gene, a2_inh_up$gene, a3_inh_up$gene, a4_inh_up$gene, 
+  a5_inh_up$gene, a6_inh_up$gene)
+gene_counts <- table(inh_up_genes)
+inh_up <- names(gene_counts[gene_counts >= 3])
+
+inh_up_genes <- c(a1_inh_down$gene, a2_inh_down$gene, a3_inh_down$gene, 
+  a4_inh_down$gene, a5_inh_down$gene, a6_inh_down$gene)
+gene_counts <- table(inh_up_genes)
+inh_down <- names(gene_counts[gene_counts >= 3])
+
+non_up_genes <- c(a1_non_up$gene, a2_non_up$gene, a3_non_up$gene, a4_non_up$gene, 
+  a5_non_up$gene, a6_non_up$gene)
+gene_counts <- table(non_up_genes)
+non_up <- names(gene_counts[gene_counts >= 3])
+
+non_up_genes <- c(a1_non_down$gene, a2_non_down$gene, a3_non_down$gene, 
+  a4_non_down$gene, a5_non_down$gene, a6_non_down$gene)
+gene_counts <- table(non_up_genes)
+non_down <- names(gene_counts[gene_counts >= 3])
+
+# Save the lists of upregulated and downregulated genes for further analysis
+saveRDS(exc_up, "exc_up_genes.rds")
+saveRDS(exc_down, "exc_down_genes.rds")
+saveRDS(inh_up, "inh_up_genes.rds")
+saveRDS(inh_down, "inh_down_genes.rds")
+saveRDS(non_up, "non_up_genes.rds")
+saveRDS(non_down, "non_down_genes.rds")
