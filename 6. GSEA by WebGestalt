@@ -21,4 +21,4 @@ a1_non_mast$gene <- NULL
 # Write a1_non_mast data to a tab-separated file named "a1_non_mast.rnk"
 write.table(a1_non_mast, file = "a1/webgestalt/filtered/a1_non_mast.rnk", sep = "\t", quote = FALSE)
 
-# Add comment to repeat the process for samples a2-a6
+# Repeat the process for samples a2-a6
